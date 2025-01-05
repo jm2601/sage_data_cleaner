@@ -68,11 +68,11 @@ def process_card_data(df, rows_to_delete_top=0, rows_to_delete_bottom=0):
             df.drop(columns=["CardHolderName"], inplace=True)
 
         # 10) Keep only the final columns
-        desired_cols = ["Card No.", "Verified", "Trans#", "Date", "Payee", "Charges"]
+        desired_cols = ["Card No.", "Verified", "Date", "Payee", "Charges"]
         existing_cols = [c for c in desired_cols if c in df.columns]
         df = df[existing_cols]
 
-        # 11) Drop rows that are empty in Verified/Trans#/Date/Payee/Charges
+        # 11) Drop rows that are empty in Verified/Date/Payee/Charges
         check_cols = [c for c in existing_cols if c != "Card No."]
         df = df.dropna(subset=check_cols, how="all")
 
